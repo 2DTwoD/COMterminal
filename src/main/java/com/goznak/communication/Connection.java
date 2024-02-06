@@ -60,10 +60,10 @@ public class Connection {
             throw new RuntimeException(e);
         }
     }
-    private boolean portOpened(){
+    public boolean portOpened(){
         return serialPort != null && serialPort.isOpened();
     }
-    private boolean portClosed(){
+    public boolean portClosed(){
         return !portOpened();
     }
 }

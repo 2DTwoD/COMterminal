@@ -10,13 +10,21 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class ComParameters {
-    private String name = "COM1";
+    private String name = "";
     private int baudRate = 9600;
     private int dataBits = 8;
     private CommonPars stopBits = stopBitsArray[0];
     private CommonPars parity = parityArray[0];
     private CommonPars flowControl = flowControlArray[0];
     private int mask = SerialPort.MASK_RXCHAR;
+    public void setNewParameters(ComParameters newParameters){
+        this.name = newParameters.getName();
+        this.baudRate = newParameters.getBaudRate();
+        this.dataBits = newParameters.getDataBits();
+        this.stopBits = newParameters.getStopBits();
+        this.parity = newParameters.getParity();
+        this.flowControl = newParameters.getFlowControl();
+    }
 
     static private String[] namesArray = SerialPortList.getPortNames();
     static public String[] getNamesArray(){
