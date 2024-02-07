@@ -1,5 +1,6 @@
 package com.goznak.communication;
 
+import com.goznak.types.CommonPars;
 import jssc.SerialPort;
 import jssc.SerialPortList;
 import lombok.*;

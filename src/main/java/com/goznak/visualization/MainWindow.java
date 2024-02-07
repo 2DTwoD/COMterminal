@@ -2,7 +2,6 @@ package com.goznak.visualization;
 
 import com.goznak.communication.Connection;
 import com.goznak.utils.Saver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -18,19 +17,22 @@ public class MainWindow extends JFrame {
     Connection connection;
     final
     ComParametersPanel comParametersPanel;
-    public MainWindow(Saver saver, Connection connection, ComParametersPanel comParametersPanel) throws HeadlessException {
+    final
+    TerminalPanel terminalPanel;
+    public MainWindow(Saver saver, Connection connection, ComParametersPanel comParametersPanel, TerminalPanel terminalPanel) throws HeadlessException {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new VerticalLayout(mainPanel, VerticalLayout.CENTER));
         this.connection = connection;
         this.comParametersPanel = comParametersPanel;
-        setSize(1200,800);
+        this.terminalPanel = terminalPanel;
+        setPreferredSize(new Dimension(1200,800));
         setLayout(new FlowLayout());
         mainPanel.add(new JLabel("Терминал для последовательного порта"));
         mainPanel.add(comParametersPanel);
+        mainPanel.add(terminalPanel);
         add(mainPanel);
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        SwingUtilities.invokeLater(this::pack);
         this.saver = saver;
         addWindowListener(new WindowAdapter() {
             @Override
@@ -40,5 +42,7 @@ public class MainWindow extends JFrame {
                 System.exit(0);
             }
         });
+        SwingUtilities.invokeLater(this::revalidate);
+        SwingUtilities.invokeLater(this::pack);
     }
 }

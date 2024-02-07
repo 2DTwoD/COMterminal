@@ -1,10 +1,9 @@
 package com.goznak.visualization;
 
 import com.goznak.communication.ComParameters;
-import com.goznak.communication.CommonPars;
+import com.goznak.types.CommonPars;
 import com.goznak.communication.Connection;
 import com.goznak.utils.Saver;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -38,8 +37,8 @@ public class ComParametersPanel extends JPanel {
         JLabel connectLabel = new JLabel("-", SwingConstants.CENTER);
         connectLabel.setOpaque(true);
         connectLabel.setPreferredSize(new Dimension(20, 20));
-        portNamesComboBox = getEditableComboBox(ComParameters.getNamesArray());
-        baudRateComboBox = getEditableComboBox(ComParameters.baudRatesArray);
+        portNamesComboBox = new JComboBox<>(ComParameters.getNamesArray());
+        baudRateComboBox = new JComboBox<>(ComParameters.baudRatesArray);
         dataBitsComboBox = new JComboBox<>(ComParameters.dataBitsArray);
         stopBitsComboBox = new JComboBox<>(ComParameters.stopBitsArray);
         parityComboBox = new JComboBox<>(ComParameters.parityArray);
@@ -85,6 +84,8 @@ public class ComParametersPanel extends JPanel {
                 setEnabledForComponents(true);
             }
         }, 0, 1, TimeUnit.SECONDS);
+        SwingUtilities.invokeLater(this::revalidate);
+        SwingUtilities.invokeLater(this::repaint);
     }
     public void setNewParametersFromComboBox(){
         comParameters.setName(getComboBoxValue(portNamesComboBox));
@@ -110,15 +111,10 @@ public class ComParametersPanel extends JPanel {
         }
     }
     private<T> T getComboBoxValue(JComboBox<T> comboBox){
-        return comboBox.getItemAt(comboBox.getSelectedIndex());
+        return comboBox.getItemAt(Math.max(comboBox.getSelectedIndex(), 0));
     }
     private void addItem(JPanel panel, String labelString, JComponent component){
         panel.add(new JLabel(labelString));
         panel.add(component);
-    }
-    private <T> JComboBox<T> getEditableComboBox(T[] array){
-        JComboBox<T> comboBox = new JComboBox<>(array);
-        comboBox.setEditable(true);
-        return comboBox;
     }
 }

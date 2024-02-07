@@ -1,4 +1,4 @@
-package com.goznak.communication;
+package com.goznak.types;
 
 import java.util.Objects;
 
