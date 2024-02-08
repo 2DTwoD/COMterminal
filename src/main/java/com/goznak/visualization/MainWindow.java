@@ -2,6 +2,7 @@ package com.goznak.visualization;
 
 import com.goznak.communication.Connection;
 import com.goznak.utils.Saver;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -19,12 +20,16 @@ public class MainWindow extends JFrame {
     ComParametersPanel comParametersPanel;
     final
     TerminalPanel terminalPanel;
-    public MainWindow(Saver saver, Connection connection, ComParametersPanel comParametersPanel, TerminalPanel terminalPanel) throws HeadlessException {
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new VerticalLayout(mainPanel, VerticalLayout.CENTER));
+    final
+    PublishSubject<Boolean> updater;
+    public MainWindow(Saver saver, Connection connection, ComParametersPanel comParametersPanel, TerminalPanel terminalPanel, PublishSubject<Boolean> updater) throws HeadlessException {
+        this.updater = updater;
         this.connection = connection;
         this.comParametersPanel = comParametersPanel;
         this.terminalPanel = terminalPanel;
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new VerticalLayout(mainPanel, VerticalLayout.CENTER));
+
         setPreferredSize(new Dimension(1200,800));
         setLayout(new FlowLayout());
         mainPanel.add(new JLabel("Терминал для последовательного порта"));
@@ -42,7 +47,17 @@ public class MainWindow extends JFrame {
                 System.exit(0);
             }
         });
-        SwingUtilities.invokeLater(this::revalidate);
-        SwingUtilities.invokeLater(this::pack);
+        updater.subscribe(val -> {
+            updatePanel(mainPanel);
+            updatePanel(comParametersPanel);
+            updatePanel(terminalPanel);
+            SwingUtilities.invokeLater(this::revalidate);
+        });
+        updater.onNext(true);
+        pack();
+    }
+    private void updatePanel(JComponent component){
+        SwingUtilities.invokeLater(component::repaint);
+        SwingUtilities.invokeLater(component::revalidate);
     }
 }

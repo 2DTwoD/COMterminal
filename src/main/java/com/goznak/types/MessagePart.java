@@ -1,10 +1,27 @@
 package com.goznak.types;
 
-import java.nio.ByteBuffer;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
-public record MessagePart(Func func, String value, int numOfBytes) {
+import java.nio.ByteBuffer;
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class MessagePart {
+    Func func;
+    String value;
+    int numOfBytes;
+
     public MessagePart() {
         this(Func.CHARS, "", 1);
+    }
+
+    public MessagePart(Func func, String value, int numOfBytes) {
+        this.func = func;
+        this.value = value;
+        this.numOfBytes = numOfBytes;
     }
     public byte[] getHEX(){
         return switch(func){

@@ -25,9 +25,13 @@ public class VerticalLayout implements LayoutManager {
     }
     @Override
     public void addLayoutComponent(String name, Component comp) {
+        panel.revalidate();
+        panel.repaint();
     }
     @Override
     public void removeLayoutComponent(Component comp) {
+        panel.revalidate();
+        panel.repaint();
     }
 
     @Override

@@ -84,8 +84,6 @@ public class ComParametersPanel extends JPanel {
                 setEnabledForComponents(true);
             }
         }, 0, 1, TimeUnit.SECONDS);
-        SwingUtilities.invokeLater(this::revalidate);
-        SwingUtilities.invokeLater(this::repaint);
     }
     public void setNewParametersFromComboBox(){
         comParameters.setName(getComboBoxValue(portNamesComboBox));

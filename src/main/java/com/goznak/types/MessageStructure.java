@@ -1,10 +1,10 @@
 package com.goznak.types;
 
+import com.goznak.visualization.MessagePartPanel;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import javax.swing.*;
+import java.util.*;
 
 @Component
 public class MessageStructure implements Iterable<MessagePart>{
@@ -12,8 +12,11 @@ public class MessageStructure implements Iterable<MessagePart>{
     public void addPart(MessagePart messagePart){
         partsList.add(messagePart);
     }
-    public void removePart(MessagePart messagePart){
-        partsList.remove(messagePart);
+    public void addPartBefore(MessagePart currentPart, MessagePart newPart){
+        partsList.add(partsList.indexOf(currentPart), newPart);
+    }
+    public void removePart(MessagePart part){
+        partsList.remove(part);
     }
     @Override
     public Iterator<MessagePart> iterator() {

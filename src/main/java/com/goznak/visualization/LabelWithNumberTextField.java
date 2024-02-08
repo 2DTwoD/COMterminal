@@ -1,15 +1,18 @@
 package com.goznak.visualization;
 
+import com.goznak.types.NumberTextField;
+
 import javax.swing.*;
 import javax.swing.text.Document;
 
-public class LabelWithTextField extends JPanel {
-    private final JTextField textField = new JTextField(10);
-    public LabelWithTextField(String labelText, int maxSymbolInTextField) {
+public class LabelWithNumberTextField extends JPanel {
+    private final NumberTextField textField;
+    public LabelWithNumberTextField(String labelText, int maxValue) {
         super();
         JLabel label = new JLabel();
         label.setText(labelText);
-        textField.setColumns(maxSymbolInTextField);
+        textField = new NumberTextField(maxValue);
+        textField.setColumns(10);
         add(label);
         add(textField);
     }
