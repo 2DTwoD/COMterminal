@@ -6,6 +6,9 @@ import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
+
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -15,7 +18,7 @@ public class MessagePart {
     int numOfBytes;
 
     public MessagePart() {
-        this(Func.CHARS, "", 1);
+        this(Func.funcsArray[0], "", 1);
     }
 
     public MessagePart(Func func, String value, int numOfBytes) {
@@ -23,13 +26,36 @@ public class MessagePart {
         this.value = value;
         this.numOfBytes = numOfBytes;
     }
-    public byte[] getHEX(){
-        return switch(func){
-            case DECIMAL -> ByteBuffer.allocate(numOfBytes).putInt(Integer.parseInt(value)).array();
-            case FLOATING -> ByteBuffer.allocate(4).putFloat(Float.parseFloat(value)).array();
-            case NUM_OF_BYTES -> new byte[]{1};
-            case CHECK_SUM -> new byte[]{2};
-            default -> value.getBytes();
-        };
+    public byte[] HEX(){
+        switch(func.value()){
+            case DECIMAL -> {
+                try{
+                    return Arrays.copyOfRange(
+                            ByteBuffer.allocate(8).putLong(Long.parseLong(value)).array(),
+                            8 - numOfBytes, 8
+                    );
+                }
+                catch (NumberFormatException ignored){
+                }
+                return new byte[]{0};
+            }
+            case FLOATING -> {
+                try{
+                    return ByteBuffer.allocate(4).putFloat(Float.parseFloat(value)).array();
+                }
+                catch (NumberFormatException ignored){
+                }
+                return new byte[]{0};
+            }
+            case NUMBER_OF_BYTES -> {
+                return new byte[]{1};
+            }
+            case CHECK_SUM -> {
+                return new byte[]{2};
+            }
+            default ->  {
+                return value.getBytes();
+            }
+        }
     }
 }

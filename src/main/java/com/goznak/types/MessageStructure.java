@@ -1,12 +1,15 @@
 package com.goznak.types;
 
-import com.goznak.visualization.MessagePartPanel;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
 import java.util.*;
 
 @Component
+@Getter
+@Setter
 public class MessageStructure implements Iterable<MessagePart>{
     List<MessagePart> partsList = new ArrayList<>();
     public void addPart(MessagePart messagePart){

@@ -1,9 +1,30 @@
 package com.goznak.types;
 
-public enum Func {
-    CHARS,
-    DECIMAL,
-    FLOATING,
-    NUM_OF_BYTES,
-    CHECK_SUM
+import java.util.Objects;
+
+public record Func(String name, FuncEnum value) {
+    public static Func[] funcsArray = new Func[]{
+        new Func("Символы ASCII", FuncEnum.CHARS),
+        new Func("Целое число", FuncEnum.DECIMAL),
+        new Func("Дробное число", FuncEnum.FLOATING),
+        new Func("Количество байт в сообщении", FuncEnum.NUMBER_OF_BYTES),
+        new Func("Контрольная сумма", FuncEnum.CHECK_SUM),
+    };
+
+    @Override
+    public String toString() {
+        return name;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Func func = (Func) o;
+        return value == func.value && Objects.equals(name, func.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, value);
+    }
 }
