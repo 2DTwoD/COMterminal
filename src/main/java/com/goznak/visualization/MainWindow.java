@@ -43,7 +43,6 @@ public class MainWindow extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 comParametersPanel.setNewParametersFromComboBox();
-                terminalPanel.saveParametersFromMessageLine();
                 saver.save();
                 System.exit(0);
             }

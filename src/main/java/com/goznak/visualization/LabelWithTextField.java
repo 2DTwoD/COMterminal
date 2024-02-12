@@ -5,9 +5,9 @@ import javax.swing.text.Document;
 
 public class LabelWithTextField extends JPanel {
     private final JTextField textField = new JTextField(10);
+    private final JLabel label = new JLabel();
     public LabelWithTextField(String labelText, int maxSymbolInTextField) {
         super();
-        JLabel label = new JLabel();
         label.setText(labelText);
         textField.setColumns(maxSymbolInTextField);
         add(label);
@@ -23,5 +23,13 @@ public class LabelWithTextField extends JPanel {
     }
     public Document getDocument(){
         return textField.getDocument();
+    }
+    public void setEnabled(boolean value){
+        textField.setEnabled(value);
+    }
+
+    public void setVisible(boolean value){
+        textField.setVisible(value);
+        label.setVisible(value);
     }
 }

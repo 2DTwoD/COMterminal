@@ -1,6 +1,7 @@
 package com.goznak.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.goznak.communication.ComParameters;
 import com.goznak.types.MessagePart;
 import com.goznak.types.MessageStructure;
@@ -37,7 +38,7 @@ public class Saver {
             ComParameters parsFromFile = mapper.readValue(new File(parametersDirectoryName + serialSettingsName), ComParameters.class);
             this.comParameters.setNewParameters(parsFromFile);
             MessagePart[] messageStructuresList = mapper.readValue(new File(parametersDirectoryName + messageStructureName), MessagePart[].class);
-            this.messageStructure.setPartsList(Arrays.stream(messageStructuresList).collect(Collectors.toCollection(ArrayList::new)));
+            this.messageStructure.setNewPartsList(Arrays.stream(messageStructuresList).collect(Collectors.toCollection(ArrayList::new)));
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

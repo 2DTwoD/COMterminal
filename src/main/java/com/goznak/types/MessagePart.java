@@ -2,60 +2,81 @@ package com.goznak.types;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
+import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-
 @Getter
 @Setter
+@NoArgsConstructor
+@Component
+@Scope("prototype")
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class MessagePart {
+public class MessagePart{
     Func func;
     String value;
     int numOfBytes;
 
-    public MessagePart() {
-        this(Func.funcsArray[0], "", 1);
+    @Getter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE)
+    transient MessageStructure messageStructure;
+
+    @Autowired
+    public MessagePart(MessageStructure messageStructure) {
+        this.messageStructure = messageStructure;
+        this.func = Func.funcsArray[0];
+        this.value = "";
+        this.numOfBytes = 1;
     }
 
-    public MessagePart(Func func, String value, int numOfBytes) {
-        this.func = func;
-        this.value = value;
-        this.numOfBytes = numOfBytes;
-    }
     public byte[] HEX(){
+        byte[] result = new byte[]{};
         switch(func.value()){
             case DECIMAL -> {
                 try{
-                    return Arrays.copyOfRange(
-                            ByteBuffer.allocate(8).putLong(Long.parseLong(value)).array(),
-                            8 - numOfBytes, 8
+                    result = Arrays.copyOfRange(
+                            ByteBuffer.allocate(8).order(ByteOrder.LITTLE_ENDIAN).putLong(Long.parseLong(value)).array(),
+                            0, numOfBytes
                     );
                 }
                 catch (NumberFormatException ignored){
                 }
-                return new byte[]{0};
+                numOfBytes = result.length;
             }
             case FLOATING -> {
                 try{
-                    return ByteBuffer.allocate(4).putFloat(Float.parseFloat(value)).array();
+                    result =  ByteBuffer.allocate(4).putFloat(Float.parseFloat(value)).array();
                 }
                 catch (NumberFormatException ignored){
                 }
-                return new byte[]{0};
+                numOfBytes = 4;
             }
             case NUMBER_OF_BYTES -> {
-                return new byte[]{1};
+                result = new byte[]{messageStructure.getNumOfBytes()};
+                numOfBytes = 1;
             }
             case CHECK_SUM -> {
-                return new byte[]{2};
+                result = new byte[]{messageStructure.getCheckSum()};
+                numOfBytes = 1;
             }
-            default ->  {
-                return value.getBytes();
+            default -> {
+                result = value.getBytes(StandardCharsets.US_ASCII);
+                numOfBytes = result.length;
             }
+
         }
+        return result;
     }
+    public byte checkSum(){
+        return Arrays.stream(ArrayUtils.toObject(HEX())).reduce((byte) 0, (x, y) -> (byte) (x ^ y));
+    }
+
 }
