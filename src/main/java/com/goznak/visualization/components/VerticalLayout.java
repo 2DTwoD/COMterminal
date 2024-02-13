@@ -1,4 +1,4 @@
-package com.goznak.visualization;
+package com.goznak.visualization.components;
 
 import javax.swing.*;
 import java.awt.*;

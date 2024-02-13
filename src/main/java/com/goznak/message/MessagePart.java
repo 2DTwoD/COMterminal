@@ -1,5 +1,6 @@
-package com.goznak.types;
+package com.goznak.message;
 
+import com.goznak.types.Func;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public class MessagePart{
         this.messageStructure = messageStructure;
         this.func = Func.funcsArray[0];
         this.value = "";
-        this.numOfBytes = 1;
+        this.numOfBytes = 0;
     }
 
     public byte[] HEX(){
@@ -48,8 +49,8 @@ public class MessagePart{
                     );
                 }
                 catch (NumberFormatException ignored){
+                    result = new byte[numOfBytes];
                 }
-                numOfBytes = result.length;
             }
             case FLOATING -> {
                 try{
@@ -71,7 +72,6 @@ public class MessagePart{
                 result = value.getBytes(StandardCharsets.US_ASCII);
                 numOfBytes = result.length;
             }
-
         }
         return result;
     }

@@ -1,0 +1,27 @@
+2024-02-13 15:44:18 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 17.0.9 with PID 11076 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-13 15:44:18 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-13 15:44:19 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.424 seconds (process running for 1.905)
+2024-02-13 15:44:19 [main] INFO  com.goznak.COMterminalApplication - info
+2024-02-13 15:44:19 [main] ERROR com.goznak.COMterminalApplication - error
+2024-02-13 15:46:13 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 17.0.9 with PID 8904 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-13 15:46:13 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-13 15:46:14 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.425 seconds (process running for 1.853)
+2024-02-13 15:46:40 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 17.0.9 with PID 11716 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-13 15:46:40 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-13 15:46:41 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.423 seconds (process running for 1.89)
+2024-02-13 15:52:01 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 17.0.9 with PID 1808 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-13 15:52:01 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-13 15:52:02 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.383 seconds (process running for 1.812)
+2024-02-13 15:52:02 [main] ERROR com.goznak.COMterminalApplication - error
+java.lang.RuntimeException: 092312
+	at com.goznak.COMterminalApplication.main(COMterminalApplication.java:13)
+2024-02-13 16:23:08 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 17.0.9 with PID 10804 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-13 16:23:08 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-13 16:23:09 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.424 seconds (process running for 1.858)
+2024-02-13 16:24:28 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 17.0.9 with PID 2984 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-13 16:24:28 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-13 16:24:29 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.432 seconds (process running for 1.886)
+2024-02-13 16:24:34 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Открываю соединение
+2024-02-13 16:24:34 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Соединение открыто
+2024-02-13 16:24:35 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю соединение
+2024-02-13 16:24:36 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Соединение закрыто

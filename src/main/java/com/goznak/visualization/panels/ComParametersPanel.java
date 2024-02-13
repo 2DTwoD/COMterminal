@@ -1,9 +1,11 @@
-package com.goznak.visualization;
+package com.goznak.visualization.panels;
 
 import com.goznak.communication.ComParameters;
 import com.goznak.types.CommonPars;
 import com.goznak.communication.Connection;
 import com.goznak.utils.Saver;
+import com.goznak.visualization.components.VerticalLayout;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
@@ -21,6 +23,8 @@ public class ComParametersPanel extends JPanel {
     Connection connection;
     final
     Saver saver;
+    final
+    PublishSubject<Boolean> panelUpdater;
     JComboBox<String> portNamesComboBox;
     JComboBox<Integer> baudRateComboBox;
     JComboBox<Integer> dataBitsComboBox;
@@ -29,8 +33,9 @@ public class ComParametersPanel extends JPanel {
     JComboBox<CommonPars> flowControlComboBox;
     JButton connectButton = new JButton("Подключиться");
     JButton disconnectButton = new JButton("Отключиться");
-    public ComParametersPanel(ComParameters comParameters, Connection connection, Saver saver) {
+    public ComParametersPanel(ComParameters comParameters, Connection connection, Saver saver, PublishSubject<Boolean> panelUpdater) {
         super();
+        this.panelUpdater = panelUpdater;
         setLayout(new VerticalLayout(this, VerticalLayout.CENTER));
         JPanel parametersPanel = new JPanel(new FlowLayout());
         JPanel buttonsPanel = new JPanel(new FlowLayout());
@@ -84,6 +89,7 @@ public class ComParametersPanel extends JPanel {
                 setEnabledForComponents(true);
             }
         }, 0, 1, TimeUnit.SECONDS);
+        panelUpdater.onNext(true);
     }
     public void setNewParametersFromComboBox(){
         comParameters.setName(getComboBoxValue(portNamesComboBox));

@@ -1,23 +1,31 @@
 package com.goznak.communication;
 
+import com.goznak.utils.Logger;
+import com.goznak.visualization.panels.TerminalPanel;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 import jssc.SerialPort;
 import jssc.SerialPortException;
+import org.apache.commons.logging.Log;
 import org.springframework.stereotype.Component;
 
 @Component
 public class Connection {
     final
     ComParameters comParameters;
+    final
+    PublishSubject<String> receivedData;
     SerialPort serialPort;
 
-    public Connection(ComParameters comParameters) {
+    public Connection(ComParameters comParameters, PublishSubject<String> receivedData) {
         this.comParameters = comParameters;
+        this.receivedData = receivedData;
     }
 
     public void openConnection() {
         if(portOpened()){
             return;
         }
+        Logger.info("Открываю соединение");
         serialPort = new SerialPort(comParameters.getName());
         try {
             serialPort.openPort();
@@ -28,16 +36,17 @@ public class Connection {
             serialPort.setFlowControlMode(comParameters.getFlowControl().value());
             serialPort.addEventListener(event -> {
                 try {
-                    String data = serialPort.readString(event.getEventValue());
+                    receivedData.onNext(serialPort.readString(event.getEventValue()));
                 } catch (SerialPortException e) {
-                    throw new RuntimeException(e);
+                    Logger.error("Read data from port error", e);
                 }
             }, comParameters.getMask());
         }
         catch (SerialPortException e) {
             closeConnection();
-            throw new RuntimeException(e);
+            Logger.error("Open serial port error", e);
         }
+        Logger.info("Соединение открыто");
     }
     public void writeData(byte[] data){
         if(portClosed()){
@@ -47,18 +56,20 @@ public class Connection {
             serialPort.writeBytes(data);
         } catch (SerialPortException e) {
             closeConnection();
-            throw new RuntimeException(e);
+            Logger.error("Write data to port error", e);
         }
     }
     public void closeConnection(){
         if(portClosed()) {
             return;
         }
+        Logger.info("Закрываю соединение");
         try {
             serialPort.closePort();
         } catch (SerialPortException e) {
-            throw new RuntimeException(e);
+            Logger.error("Close serial port error", e);
         }
+        Logger.info("Соединение закрыто");
     }
     public boolean portOpened(){
         return serialPort != null && serialPort.isOpened();

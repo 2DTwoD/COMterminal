@@ -1,5 +1,6 @@
-package com.goznak.types;
+package com.goznak.message;
 
+import com.goznak.types.FuncEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.lang3.ArrayUtils;
@@ -44,7 +45,7 @@ public class MessageStructure implements Iterable<MessagePart>{
         for(byte item: getFullMessageBytes()){
             result.append(String.format("%02x ", item));
         }
-        return result.toString();
+        return result.toString().toUpperCase();
     }
     public String getFullMessage(){
         StringBuilder result = new StringBuilder();

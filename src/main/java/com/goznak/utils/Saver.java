@@ -1,10 +1,10 @@
 package com.goznak.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.goznak.communication.ComParameters;
-import com.goznak.types.MessagePart;
-import com.goznak.types.MessageStructure;
+import com.goznak.message.MessagePart;
+import com.goznak.message.MessageStructure;
+import com.goznak.visualization.panels.TerminalPanel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -19,41 +19,52 @@ public class Saver {
     ComParameters comParameters;
     final
     MessageStructure messageStructure;
+    final
+    TerminalPanel terminalPanel;
 
-    private final String serialSettingsName;
-    private final String messageStructureName;
-
+    private final String serialSettingsFileName;
+    private final String messageStructureFileName;
     private final String parametersDirectoryName;
+    private final String historyFileName;
     public Saver(ComParameters comParameters, MessageStructure messageStructure,
-                 @Value("${serial.settings.name}") String serialSettingsName,
-                 @Value("${message.structure.name}") String messageStructureName,
+                 TerminalPanel terminalPanel, @Value("${serial.settings.file.name}") String serialSettingsFileName,
+                 @Value("${message.structure.file.name}") String messageStructureFileName,
+                 @Value("${history.file.name}") String historyFileName,
                  @Value("${parameters.directory.name}") String parametersDirectoryName) {
-        this.messageStructureName = messageStructureName;
+        this.terminalPanel = terminalPanel;
+        this.messageStructureFileName = messageStructureFileName;
         this.messageStructure = messageStructure;
-        this.serialSettingsName = serialSettingsName;
+        this.serialSettingsFileName = serialSettingsFileName;
         this.comParameters = comParameters;
         this.parametersDirectoryName = parametersDirectoryName;
+        this.historyFileName = historyFileName;
         ObjectMapper mapper = new ObjectMapper();
+        Logger.info("Загружаю настройки из файлов");
         try {
-            ComParameters parsFromFile = mapper.readValue(new File(parametersDirectoryName + serialSettingsName), ComParameters.class);
+            ComParameters parsFromFile = mapper.readValue(new File(parametersDirectoryName + serialSettingsFileName), ComParameters.class);
             this.comParameters.setNewParameters(parsFromFile);
-            MessagePart[] messageStructuresList = mapper.readValue(new File(parametersDirectoryName + messageStructureName), MessagePart[].class);
+            MessagePart[] messageStructuresList = mapper.readValue(new File(parametersDirectoryName + messageStructureFileName), MessagePart[].class);
             this.messageStructure.setNewPartsList(Arrays.stream(messageStructuresList).collect(Collectors.toCollection(ArrayList::new)));
+            Logger.info("Настройки загружены");
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            Logger.error("Ошибка чтения файла", e);
         }
     }
     public void save(){
+        Logger.info("Сохраняю настройки в файлах");
         File dir = new File(parametersDirectoryName);
         if (!dir.exists()){
             dir.mkdirs();
         }
         ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.writeValue(new File(parametersDirectoryName + serialSettingsName), comParameters);
-            objectMapper.writeValue(new File(parametersDirectoryName + messageStructureName), messageStructure.getPartsList());
+        try (FileWriter writer = new FileWriter(parametersDirectoryName + historyFileName, true)){
+            objectMapper.writeValue(new File(parametersDirectoryName + serialSettingsFileName), comParameters);
+            objectMapper.writeValue(new File(parametersDirectoryName + messageStructureFileName), messageStructure.getPartsList());
+            writer.write(terminalPanel.getTextAreaContent());
+            writer.flush();
+            Logger.info("Настройки сохранены");
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            Logger.error("Ошибка записи файла", e);
         }
     }
 }
