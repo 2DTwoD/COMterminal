@@ -32,7 +32,6 @@ public class MainWindow extends JFrame {
         this.comParametersPanel = comParametersPanel;
         this.terminalPanel = terminalPanel;
         this.saver = saver;
-
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new VerticalLayout(mainPanel, VerticalLayout.CENTER));
         mainPanel.add(new JLabel("Терминал для последовательного порта"));
@@ -47,6 +46,7 @@ public class MainWindow extends JFrame {
         setVisible(true);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setPreferredSize(new Dimension(1200,800));
+        setTitle("COMterminal");
         add(mainScroll);
         addWindowListener(new WindowAdapter() {
             @Override

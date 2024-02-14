@@ -1,0 +1,1 @@
+{"name":"COM4","baudRate":19200,"dataBits":8,"stopBits":{"name":"1","value":1},"parity":{"name":"Четный","value":2},"flowControl":{"name":"Нет","value":0},"mask":1}

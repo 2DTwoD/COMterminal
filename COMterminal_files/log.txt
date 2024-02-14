@@ -1,0 +1,40 @@
+2024-02-14 14:26:22 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication using Java 21.0.1 with PID 11788 (D:\GitProjects\COMterminal\target\classes started by VNT in D:\GitProjects\COMterminal)
+2024-02-14 14:26:22 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-14 14:26:23 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
+2024-02-14 14:26:23 [main] ERROR com.goznak.COMterminalApplication - Ошибка чтения файла
+java.io.FileNotFoundException: COMterminal_files\COM_pars.json (Не удается найти указанный файл)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:213)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:152)
+	at com.fasterxml.jackson.core.TokenStreamFactory._fileInputStream(TokenStreamFactory.java:278)
+	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:1089)
+	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3637)
+	at com.goznak.utils.Saver.<init>(Saver.java:44)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:210)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1354)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
+	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
+	at com.goznak.COMterminalApplication.main(COMterminalApplication.java:11)
+2024-02-14 14:26:23 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.364 seconds (process running for 1.852)
+2024-02-14 14:26:28 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
+2024-02-14 14:26:28 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
+2024-02-14 14:26:28 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
+2024-02-14 14:26:28 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто

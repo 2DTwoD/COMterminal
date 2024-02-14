@@ -1,14 +1,15 @@
 package com.goznak.communication;
 
 import com.goznak.utils.Logger;
-import com.goznak.visualization.panels.TerminalPanel;
 import io.reactivex.rxjava3.subjects.PublishSubject;
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import org.apache.commons.logging.Log;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Component;
 
 @Component
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Connection {
     final
     ComParameters comParameters;
