@@ -39,9 +39,7 @@ public class MessagePartPanel extends JPanel {
         this.messageStructure = messageStructure;
         numOfBytesLabel.setPreferredSize(new Dimension(50,20));
         numOfBytesComboBox.setPreferredSize(new Dimension(50,20));
-        funcComboBox.addActionListener(e -> {
-            messagePart.setFunc(funcComboBox.getItemAt(funcComboBox.getSelectedIndex()));
-        });
+        funcComboBox.addActionListener(e -> messagePart.setFunc(funcComboBox.getItemAt(funcComboBox.getSelectedIndex())));
         numOfBytesComboBox.addActionListener(e ->
                 messagePart.setNumOfBytes(numOfBytesComboBox.getItemAt(numOfBytesComboBox.getSelectedIndex()))
         );
