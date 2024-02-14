@@ -6,22 +6,29 @@ import java.awt.*;
 public class VerticalLayout implements LayoutManager {
     final private Dimension size = new Dimension();
     final private JComponent panel;
-    final private int distanceX;
-    final private int distanceY;
+    private int distanceX;
+    private int distanceY;
+    private int paddingY;
     final int align;
     static final public int LEFT = 0;
     static final public int CENTER = 1;
     public VerticalLayout(JComponent panel, int align){
         this.panel = panel;
-        this.distanceX = 0;
-        this.distanceY = 0;
         this.align = align;
     }
+    public VerticalLayout(JComponent panel, int align, int paddingY){
+        this(panel, align);
+        this.paddingY = paddingY;
+    }
     public VerticalLayout(JComponent panel, int distanceX, int distanceY, int align){
-        this.panel = panel;
+        this(panel, align);
         this.distanceX = distanceX;
         this.distanceY = distanceY;
-        this.align = align;
+    }
+    public VerticalLayout(JComponent panel, int distanceX, int distanceY, int align, int paddingY){
+        this(panel, align, paddingY);
+        this.distanceX = distanceX;
+        this.distanceY = distanceY;
     }
     @Override
     public void addLayoutComponent(String name, Component comp) {
@@ -51,14 +58,14 @@ public class VerticalLayout implements LayoutManager {
         if (align == CENTER)
             currentX = panel.getSize().width / 2;
 
-        int currentY = distanceY;
+        int currentY = distanceY + paddingY;
         int shiftingX = 0;
         for (Component component : list) {
             Dimension pref = component.getPreferredSize();
             if (align == CENTER)
                 shiftingX = pref.width / 2;
             component.setBounds(currentX - shiftingX, currentY, pref.width, pref.height);
-            currentY += distanceY;
+            currentY += distanceY + paddingY;
             currentY += pref.height;
         }
         container.revalidate();
@@ -76,7 +83,7 @@ public class VerticalLayout implements LayoutManager {
         size.width = maxWidth;
         int height = 0;
         for (Component component : list) {
-            height += distanceY;
+            height += distanceY + paddingY;
             height += component.getHeight();
         }
         size.height = height;

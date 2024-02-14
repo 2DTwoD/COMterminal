@@ -33,8 +33,10 @@ public class MainWindow extends JFrame {
         this.terminalPanel = terminalPanel;
         this.saver = saver;
         JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new VerticalLayout(mainPanel, VerticalLayout.CENTER));
-        mainPanel.add(new JLabel("Терминал для последовательного порта"));
+        JLabel titleLabel = new JLabel("Терминал для последовательного порта");
+        titleLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
+        mainPanel.setLayout(new VerticalLayout(mainPanel, VerticalLayout.CENTER, 10));
+        mainPanel.add(titleLabel);
         mainPanel.add(comParametersPanel);
         mainPanel.add(terminalPanel);
 

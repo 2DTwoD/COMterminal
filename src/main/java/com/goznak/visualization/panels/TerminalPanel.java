@@ -12,6 +12,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.swing.*;
+import java.awt.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -42,21 +43,27 @@ public class TerminalPanel extends JPanel {
         this.context = context;
         this.receivedData = receivedData;
         this.connection = connection;
+        setLayout(new VerticalLayout(this, VerticalLayout.CENTER, 10));
         messageLinePanel.setLayout(new VerticalLayout(this, VerticalLayout.LEFT));
+
         JButton addMessagePartButton = new JButton("Добавить после");
         DynamicLabelWithSubscribe hexResultLabel = new DynamicLabelWithSubscribe("Результат ввода:");
-        JButton sendButton = new JButton("Отправить");
-        setLayout(new VerticalLayout(this, VerticalLayout.CENTER));
+        hexResultLabel.setLabelFont(new Font(Font.SANS_SERIF, Font.BOLD, 14));
+        JButton sendButton = new JButton(">>Отправить<<");
+        sendButton.setPreferredSize(new Dimension(200, 30));
+
         addMessagePartButton.addActionListener(e -> addMessagePart());
         sendButton.addActionListener(e -> {
             connection.writeData(messageStructure.getFullMessageBytes());
             printRequest();
         });
+
         add(messageLinePanel);
         add(addMessagePartButton);
         add(hexResultLabel);
         add(sendButton);
         add(terminalTextArea);
+
         ScheduledExecutorService ses = Executors.newSingleThreadScheduledExecutor();
         ses.scheduleAtFixedRate(() -> {
             try {
@@ -72,7 +79,7 @@ public class TerminalPanel extends JPanel {
                 sendButton.setEnabled(connection.portOpened());
             }
             catch (Exception e){
-                Logger.error("Ошибка в циклу обновления компонентов", e);
+                Logger.error("Ошибка в цикле обновления компонентов", e);
             }
         }, 0, 1, TimeUnit.SECONDS);
         receivedData.subscribe(this::printResponse);
