@@ -69,3 +69,12 @@ java.io.FileNotFoundException: COMterminal_files\COM_pars.json (Не удается найти
 2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
 2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
 2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
+2024-02-14 15:43:07 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.0.0 using Java 17.0.9 with PID 11948 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
+2024-02-14 15:43:07 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-14 15:43:08 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
+2024-02-14 15:43:08 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
+2024-02-14 15:43:09 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.948 seconds (process running for 2.428)
+2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
+2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
+2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
+2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
