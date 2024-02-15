@@ -1,15 +1,30 @@
-2024-02-14 14:28:06 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.0.0 using Java 17.0.9 with PID 11384 (D:\ComT\COMterminal.exe started by VNT in D:\ComT)
-2024-02-14 14:28:06 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-14 14:28:07 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
-2024-02-14 14:28:07 [main] ERROR com.goznak.COMterminalApplication - Ошибка чтения файла
-java.io.FileNotFoundException: COMterminal_files\COM_pars.json (Не удается найти указанный файл)
-	at java.base/java.io.FileInputStream.open0(Native Method)
-	at java.base/java.io.FileInputStream.open(FileInputStream.java:216)
-	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:157)
-	at com.fasterxml.jackson.core.TokenStreamFactory._fileInputStream(TokenStreamFactory.java:278)
-	at com.fasterxml.jackson.core.JsonFactory.createParser(JsonFactory.java:1089)
+2024-02-15 14:45:09 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.1.0 using Java 17.0.9 with PID 10664 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
+2024-02-15 14:45:09 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-15 14:45:10 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
+2024-02-15 14:45:10 [main] ERROR com.goznak.COMterminalApplication - Ошибка чтения файла
+com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.goznak.types.FuncEnum` from String "CHECK_SUM": not one of the values accepted for Enum class: [CHECK_SUM_XOR, DECIMAL, FLOATING, CHECK_SUM_CRC16_CCITT, NUMBER_OF_BYTES, CHARS]
+ at [Source: (File); line: 1, column: 359] (through reference chain: java.lang.Object[][3]->com.goznak.message.MessagePart["func"]->com.goznak.types.Func["value"])
+	at com.fasterxml.jackson.databind.exc.InvalidFormatException.from(InvalidFormatException.java:67)
+	at com.fasterxml.jackson.databind.DeserializationContext.weirdStringException(DeserializationContext.java:2002)
+	at com.fasterxml.jackson.databind.DeserializationContext.handleWeirdStringValue(DeserializationContext.java:1230)
+	at com.fasterxml.jackson.databind.deser.std.EnumDeserializer._deserializeAltString(EnumDeserializer.java:415)
+	at com.fasterxml.jackson.databind.deser.std.EnumDeserializer._fromString(EnumDeserializer.java:279)
+	at com.fasterxml.jackson.databind.deser.std.EnumDeserializer.deserialize(EnumDeserializer.java:248)
+	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:545)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeWithErrorWrapping(BeanDeserializer.java:570)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:439)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1409)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:352)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185)
+	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:129)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.vanillaDeserialize(BeanDeserializer.java:314)
+	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:177)
+	at com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer.deserialize(ObjectArrayDeserializer.java:217)
+	at com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer.deserialize(ObjectArrayDeserializer.java:27)
+	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:323)
+	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4825)
 	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3637)
-	at com.goznak.utils.Saver.<init>(Saver.java:44)
+	at com.goznak.utils.Saver.<init>(Saver.java:46)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -42,39 +57,17 @@ java.io.FileNotFoundException: COMterminal_files\COM_pars.json (Не удается найти
 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91)
 	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53)
 	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58)
-2024-02-14 14:28:07 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.942 seconds (process running for 2.424)
-2024-02-14 14:28:43 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
-2024-02-14 14:28:43 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
-2024-02-14 14:28:43 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
-2024-02-14 14:28:43 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
-2024-02-14 14:29:41 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.0.0 using Java 17.0.9 with PID 10844 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
-2024-02-14 14:29:41 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-14 14:29:43 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
-2024-02-14 14:29:43 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
-2024-02-14 14:29:43 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 2.025 seconds (process running for 2.518)
-2024-02-14 14:30:03 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
-2024-02-14 14:30:03 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
-2024-02-14 14:30:03 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
-2024-02-14 14:30:03 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
-2024-02-14 14:30:07 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.0.0 using Java 17.0.9 with PID 11820 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
-2024-02-14 14:30:07 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-14 14:30:08 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
-2024-02-14 14:30:08 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
-2024-02-14 14:30:09 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 2.003 seconds (process running for 2.511)
-2024-02-14 14:30:15 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Открываю соединение
-2024-02-14 14:30:15 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Соединение открыто
-2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
-2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю соединение
-2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Соединение закрыто
-2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
-2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
-2024-02-14 14:31:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
-2024-02-14 15:43:07 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.0.0 using Java 17.0.9 with PID 11948 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
-2024-02-14 15:43:07 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-14 15:43:08 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
-2024-02-14 15:43:08 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
-2024-02-14 15:43:09 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.948 seconds (process running for 2.428)
-2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
-2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
-2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
-2024-02-14 15:43:17 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
+2024-02-15 14:45:11 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 2.001 seconds (process running for 2.483)
+2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
+2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
+2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
+2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
+2024-02-15 14:45:44 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.1.0 using Java 17.0.9 with PID 15836 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
+2024-02-15 14:45:44 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-15 14:45:45 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
+2024-02-15 14:45:46 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
+2024-02-15 14:45:46 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.988 seconds (process running for 2.496)
+2024-02-15 14:45:47 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
+2024-02-15 14:45:47 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
+2024-02-15 14:45:48 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
+2024-02-15 14:45:48 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто

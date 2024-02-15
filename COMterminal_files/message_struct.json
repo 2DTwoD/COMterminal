@@ -1,1 +1,1 @@
-[{"func":{"name":"Символы ASCII","value":"CHARS"},"value":"","numOfBytes":0}]
+[{"func":{"name":"Контрольная сумма CRC16-CCITT","value":"CHECK_SUM_CRC16_CCITT"},"value":"18412","numOfBytes":2},{"func":{"name":"Символы ASCII","value":"CHARS"},"value":"212","numOfBytes":3}]

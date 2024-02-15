@@ -64,9 +64,16 @@ public class MessagePart{
                 result = new byte[]{messageStructure.getNumOfBytes()};
                 numOfBytes = 1;
             }
-            case CHECK_SUM -> {
-                result = new byte[]{messageStructure.getCheckSum()};
+            case CHECK_SUM_XOR -> {
+                result = new byte[]{messageStructure.getCheckSumXor()};
                 numOfBytes = 1;
+            }
+            case CHECK_SUM_CRC16_CCITT -> {
+                result = Arrays.copyOfRange(
+                        ByteBuffer.allocate(4).putInt(messageStructure.getCheckSumCrcCcit()).array(),
+                        2, 4
+                );
+                numOfBytes = 2;
             }
             default -> {
                 result = value.getBytes(StandardCharsets.US_ASCII);
@@ -75,8 +82,7 @@ public class MessagePart{
         }
         return result;
     }
-    public byte checkSum(){
+    public byte checkSumXor(){
         return Arrays.stream(ArrayUtils.toObject(HEX())).reduce((byte) 0, (x, y) -> (byte) (x ^ y));
     }
-
 }

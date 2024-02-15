@@ -88,8 +88,12 @@ public class MessagePartPanel extends JPanel {
                 messageTextField.setText(String.valueOf(messageStructure.getNumOfBytes()));
                 updatePanelForCsNob();
             }
-            case CHECK_SUM -> {
-                messageTextField.setText(String.valueOf(messageStructure.getCheckSum()));
+            case CHECK_SUM_XOR -> {
+                messageTextField.setText(String.valueOf(messageStructure.getCheckSumXor()));
+                updatePanelForCsNob();
+            }
+            case CHECK_SUM_CRC16_CCITT -> {
+                messageTextField.setText(String.valueOf(messageStructure.getCheckSumCrcCcit()));
                 updatePanelForCsNob();
             }
             default -> {

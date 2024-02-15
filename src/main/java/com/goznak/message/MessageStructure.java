@@ -65,10 +65,36 @@ public class MessageStructure implements Iterable<MessagePart>{
     public byte getNumOfBytes(){
         return partsList.stream().reduce(0, (x, y) -> x + y.getNumOfBytes(), Integer::sum).byteValue();
     }
-    public byte getCheckSum(){
+    public byte getCheckSumXor(){
         return partsList.stream()
-                .filter(i -> !i.getFunc().value().equals(FuncEnum.CHECK_SUM))
-                .reduce((byte) 0, (x, y) -> (byte) (x ^ y.checkSum()), (x, y) -> (byte) (x ^ y));
+                .filter(i -> !(i.getFunc().value().equals(FuncEnum.CHECK_SUM_XOR)
+                        || i.getFunc().value().equals(FuncEnum.CHECK_SUM_CRC16_CCITT)))
+                .reduce((byte) 0, (x, y) -> (byte) (x ^ y.checkSumXor()), (x, y) -> (byte) (x ^ y));
+    }
+    public int getCheckSumCrcCcit(){
+        Byte[] array = partsList.stream()
+                .filter(i -> !(i.getFunc().value().equals(FuncEnum.CHECK_SUM_XOR)
+                        || i.getFunc().value().equals(FuncEnum.CHECK_SUM_CRC16_CCITT)))
+                .map(MessagePart::HEX)
+                .flatMap(i -> Arrays.stream(ArrayUtils.toObject(i))).toArray(Byte[]::new);
+        return crc16(array);
+    }
+    int crc16(Byte[] messageBytes)
+    {
+        int crc = 0xFFFF;
+        int polynomial = 0x1021;
+        for (byte b:messageBytes) {
+            for (int i = 0; i < 8; i++) {
+                boolean bit = ((b >> (7-i) & 1) == 1);
+                boolean c15 = ((crc >> 15 & 1) == 1);
+                crc <<= 1;
+                if (c15 ^ bit) {
+                    crc ^= polynomial;
+                }
+            }
+        }
+        crc &= 0xFFFF;
+        return crc;
     }
     @Override
     public Iterator<MessagePart> iterator() {

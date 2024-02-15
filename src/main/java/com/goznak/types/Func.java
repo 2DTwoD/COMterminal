@@ -8,7 +8,8 @@ public record Func(String name, FuncEnum value) {
         new Func("Целое число", FuncEnum.DECIMAL),
         new Func("Дробное число", FuncEnum.FLOATING),
         new Func("Количество байт в сообщении", FuncEnum.NUMBER_OF_BYTES),
-        new Func("Контрольная сумма", FuncEnum.CHECK_SUM),
+        new Func("Контрольная сумма XOR", FuncEnum.CHECK_SUM_XOR),
+        new Func("Контрольная сумма CRC16-CCITT", FuncEnum.CHECK_SUM_CRC16_CCITT)
     };
 
     @Override

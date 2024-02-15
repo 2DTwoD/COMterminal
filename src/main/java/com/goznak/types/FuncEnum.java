@@ -5,5 +5,6 @@ public enum FuncEnum {
     DECIMAL,
     FLOATING,
     NUMBER_OF_BYTES,
-    CHECK_SUM
+    CHECK_SUM_XOR,
+    CHECK_SUM_CRC16_CCITT
 }

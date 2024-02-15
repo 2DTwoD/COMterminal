@@ -1,1 +1,1 @@
-[{"func":{"name":"Целое число","value":"DECIMAL"},"value":"2","numOfBytes":1},{"func":{"name":"Количество байт в сообщении","value":"NUMBER_OF_BYTES"},"value":"5","numOfBytes":1},{"func":{"name":"Символы ASCII","value":"CHARS"},"value":"St","numOfBytes":2},{"func":{"name":"Контрольная сумма","value":"CHECK_SUM"},"value":"32","numOfBytes":1}]
+[{"func":{"name":"Символы ASCII","value":"CHARS"},"value":"123","numOfBytes":3},{"func":{"name":"Контрольная сумма CRC16-CCITT","value":"CHECK_SUM_CRC16_CCITT"},"value":"23502","numOfBytes":2}]
