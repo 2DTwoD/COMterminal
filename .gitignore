@@ -4,7 +4,7 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 COMterminal_files/
-
+exe/
 
 ### IntelliJ IDEA ###
 .idea
