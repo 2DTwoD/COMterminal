@@ -2,7 +2,7 @@
 <launch4jConfig>
   <dontWrapJar>false</dontWrapJar>
   <headerType>gui</headerType>
-  <jar>D:\GitProjects\COMterminal\exe\COMterminal-1.1.0.jar</jar>
+  <jar>D:\GitProjects\COMterminal\exe\COMterminal-1.1.1.jar</jar>
   <outfile>D:\GitProjects\COMterminal\exe\COMterminal.exe</outfile>
   <errTitle></errTitle>
   <cmdLine></cmdLine>

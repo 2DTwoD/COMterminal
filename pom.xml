@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.goznak</groupId>
     <artifactId>COMterminal</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <name>COMterminal</name>
     <description>COMterminal</description>
     <properties>

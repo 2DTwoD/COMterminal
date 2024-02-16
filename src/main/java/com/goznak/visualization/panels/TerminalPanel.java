@@ -126,7 +126,7 @@ public class TerminalPanel extends JPanel {
             terminalTextArea.insertString(String.format("%s <<Ответ<< %s\n", getDateString(),
                     text.chars().mapToObj(i -> {
                         if(i < 32){
-                            return String.valueOf(i);
+                            return String.format(" %s ", i);
                         } else {
                             return (char) i;
                         }

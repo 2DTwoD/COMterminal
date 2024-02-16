@@ -1,73 +1,9 @@
-2024-02-15 14:45:09 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.1.0 using Java 17.0.9 with PID 10664 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
-2024-02-15 14:45:09 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-15 14:45:10 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
-2024-02-15 14:45:10 [main] ERROR com.goznak.COMterminalApplication - Ошибка чтения файла
-com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `com.goznak.types.FuncEnum` from String "CHECK_SUM": not one of the values accepted for Enum class: [CHECK_SUM_XOR, DECIMAL, FLOATING, CHECK_SUM_CRC16_CCITT, NUMBER_OF_BYTES, CHARS]
- at [Source: (File); line: 1, column: 359] (through reference chain: java.lang.Object[][3]->com.goznak.message.MessagePart["func"]->com.goznak.types.Func["value"])
-	at com.fasterxml.jackson.databind.exc.InvalidFormatException.from(InvalidFormatException.java:67)
-	at com.fasterxml.jackson.databind.DeserializationContext.weirdStringException(DeserializationContext.java:2002)
-	at com.fasterxml.jackson.databind.DeserializationContext.handleWeirdStringValue(DeserializationContext.java:1230)
-	at com.fasterxml.jackson.databind.deser.std.EnumDeserializer._deserializeAltString(EnumDeserializer.java:415)
-	at com.fasterxml.jackson.databind.deser.std.EnumDeserializer._fromString(EnumDeserializer.java:279)
-	at com.fasterxml.jackson.databind.deser.std.EnumDeserializer.deserialize(EnumDeserializer.java:248)
-	at com.fasterxml.jackson.databind.deser.SettableBeanProperty.deserialize(SettableBeanProperty.java:545)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeWithErrorWrapping(BeanDeserializer.java:570)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer._deserializeUsingPropertyBased(BeanDeserializer.java:439)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializerBase.deserializeFromObjectUsingNonDefault(BeanDeserializerBase.java:1409)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserializeFromObject(BeanDeserializer.java:352)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:185)
-	at com.fasterxml.jackson.databind.deser.impl.MethodProperty.deserializeAndSet(MethodProperty.java:129)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.vanillaDeserialize(BeanDeserializer.java:314)
-	at com.fasterxml.jackson.databind.deser.BeanDeserializer.deserialize(BeanDeserializer.java:177)
-	at com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer.deserialize(ObjectArrayDeserializer.java:217)
-	at com.fasterxml.jackson.databind.deser.std.ObjectArrayDeserializer.deserialize(ObjectArrayDeserializer.java:27)
-	at com.fasterxml.jackson.databind.deser.DefaultDeserializationContext.readRootValue(DefaultDeserializationContext.java:323)
-	at com.fasterxml.jackson.databind.ObjectMapper._readMapAndClose(ObjectMapper.java:4825)
-	at com.fasterxml.jackson.databind.ObjectMapper.readValue(ObjectMapper.java:3637)
-	at com.goznak.utils.Saver.<init>(Saver.java:46)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
-	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
-	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:210)
-	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:111)
-	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:315)
-	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:306)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1354)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1191)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:561)
-	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:521)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:325)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:323)
-	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:975)
-	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:959)
-	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:624)
-	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:754)
-	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:456)
-	at org.springframework.boot.SpringApplication.run(SpringApplication.java:334)
-	at org.springframework.boot.builder.SpringApplicationBuilder.run(SpringApplicationBuilder.java:149)
-	at com.goznak.COMterminalApplication.main(COMterminalApplication.java:11)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
-	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:91)
-	at org.springframework.boot.loader.launch.Launcher.launch(Launcher.java:53)
-	at org.springframework.boot.loader.launch.JarLauncher.main(JarLauncher.java:58)
-2024-02-15 14:45:11 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 2.001 seconds (process running for 2.483)
-2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
-2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
-2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
-2024-02-15 14:45:39 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
-2024-02-15 14:45:44 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.1.0 using Java 17.0.9 with PID 15836 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
-2024-02-15 14:45:44 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
-2024-02-15 14:45:45 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
-2024-02-15 14:45:46 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
-2024-02-15 14:45:46 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.988 seconds (process running for 2.496)
-2024-02-15 14:45:47 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
-2024-02-15 14:45:47 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
-2024-02-15 14:45:48 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
-2024-02-15 14:45:48 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
+2024-02-16 09:48:34 [main] INFO  com.goznak.COMterminalApplication - Starting COMterminalApplication v1.1.1 using Java 17.0.9 with PID 9996 (D:\GitProjects\COMterminal\exe\COMterminal.exe started by VNT in D:\GitProjects\COMterminal\exe)
+2024-02-16 09:48:34 [main] INFO  com.goznak.COMterminalApplication - No active profile set, falling back to 1 default profile: "default"
+2024-02-16 09:48:35 [main] INFO  com.goznak.COMterminalApplication - Загружаю настройки из файлов
+2024-02-16 09:48:35 [main] INFO  com.goznak.COMterminalApplication - Настройки загружены
+2024-02-16 09:48:35 [main] INFO  com.goznak.COMterminalApplication - Started COMterminalApplication in 1.988 seconds (process running for 2.479)
+2024-02-16 09:48:41 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Закрываю приложение
+2024-02-16 09:48:41 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Сохраняю настройки в файлах
+2024-02-16 09:48:41 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Настройки сохранены
+2024-02-16 09:48:41 [AWT-EventQueue-0] INFO  com.goznak.COMterminalApplication - Приложение закрыто
